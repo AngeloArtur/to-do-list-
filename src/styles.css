@@ -1,1 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --primary: #2fbf71;
+    --primary-010: #21804d;
+
+    --white: #fff;
+    --grey: #9b9ba0;
+
+    --black: #10101a;
+    --black-010: #2a2a30;
+
+    --red: #c90025;
+    --red-010: #a3001e;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: var(--black);
+    font-family: Roboto, "Helvetica neue";
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2, h3 {
+    font-size: 1.2rem;
+}
+
+h1, h2, h3, a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+p {
+    color: var(--grey);
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

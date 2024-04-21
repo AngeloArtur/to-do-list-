@@ -1,0 +1,9 @@
+<div class="container">
+    <img src="assets/images/task-list-null.png" alt="" loading="eager">
+
+    @if(addItem) {
+        <button class="btn btn-primary" (click)="addItem = false">Crie uma lista de tarefas</button>
+    } @else {
+        <app-input-area (outputAddListItem)="getInputItens($event)"></app-input-area>
+    }
+</div>
