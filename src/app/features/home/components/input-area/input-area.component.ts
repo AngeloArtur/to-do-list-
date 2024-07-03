@@ -1,16 +1,22 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Output, ViewChild, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild, inject } from '@angular/core';
 import { IListItens } from '../../../../core/interface/IListItens.interface';
+import { NgClass } from '@angular/common';
+
 
 @Component({
   selector: 'app-input-area',
   standalone: true,
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './input-area.component.html',
   styleUrl: './input-area.component.css'
 })
 export class InputAreaComponent {
   private cdr = inject(ChangeDetectorRef);
   @ViewChild('inputText') public inputText!: ElementRef;
+  
+  @Input({required: true}) public inputListItems:IListItens[] = [];
   @Output() public outputAddListItem = new EventEmitter<IListItens>();
   
   public focusAndAddItem(value:string) {
