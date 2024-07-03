@@ -1,0 +1,5 @@
+@import url('../input-area/input-area.component.css');
+
+.input-label-text {
+    margin: 10px auto;
+}
