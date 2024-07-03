@@ -1,3 +1,19 @@
+.has-items {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-bottom: 2px solid var(--black-010);
+}
+
+h1 {
+    font-size: 18px;
+    margin: 18px 0;
+    color: var(--white);
+    text-align: center;
+}
+
 .btn {
     display: flex;
     justify-content: center;
@@ -24,6 +40,7 @@ label .btn-primary {
 .btn-danger, .btn-danger-circle {
     color: var(--white);
     background-color: var(--red);
+    border: none;
 }
 
 .btn-danger:hover, .btn-danger-circle:hover {
@@ -79,17 +96,23 @@ input {
     margin-left: 10px;
 }
 
-.checkbox {
+.remove-margin-bottom {
+    margin-bottom: 0;
+}
+
+input[type="checkbox"] {
     appearance: none;
     background-color: var(--white);
+
     width: 20px;
     height: 20px;
+
     border: none;
-    border-radius: 50%;
+    border-radius: 50px;
     cursor: pointer;
 }
 
-.checkbox .checked{
+input[type="checkbox"]:checked{
     background: var(--primary);
     border: none;
 }
