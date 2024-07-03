@@ -4,6 +4,16 @@
     @if(addItem) {
         <button class="btn btn-primary" (click)="addItem = false">Crie uma lista de tarefas</button>
     } @else {
-        <app-input-area (outputAddListItem)="getInputItens($event)"></app-input-area>
+        <app-input-area [inputListItems]="getListItems()" (outputAddListItem)="getInputAddItems($event)"></app-input-area>
     }
+
 </div>
+<main class="container">
+    <h2>Pendências</h2>
+    <app-input-list-item [inputListItems]="getListItems()"></app-input-list-item>
+</main>
+<footer>
+    <button class="btn-danger" (click)="deleteAllItems()">
+        Deletar todos os itens
+    </button>
+</footer>
