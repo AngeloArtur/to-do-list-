@@ -6,11 +6,32 @@
     flex-direction: column;
 }
 
-.container {
+div.container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+main.container {
+    height: 50vh;
+
+    overflow-y: auto;
+    width: 100%;
+    text-align: center;
+}
+
+main.container::-webkit-scrollbar {
+    width: 4px;
+    background-color: var(--primary);
+    border-radius: 5px;
+}
+main.container::-webkit-scrollbar-track {
+    background-color: var(--black-010);
+}
+main.container::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 5px;
 }
 
 .btn {
@@ -40,6 +61,7 @@
 .btn-danger, .btn-danger-circle {
     color: var(--white);
     background-color: var(--red);
+    border: none;
 }
 
 .btn-danger:hover, .btn-danger-circle:hover {
@@ -60,4 +82,13 @@
 
 .btn-primary-circle, .btn-danger-circle::after {
     position: relative;
+}
+
+footer {
+    height: 90px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid var(--black-010);
 }
