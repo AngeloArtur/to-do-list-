@@ -11,12 +11,17 @@ import { InputListItemComponent } from './components/input-list-item/input-list-
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  public addItem:boolean = true;
+  public addItem:boolean = true; 
   private setListenItens = signal<IListItens[]>(this.parseItens());
   public getListItems = this.setListenItens.asReadonly();
 
   private parseItens(){
     return JSON.parse(localStorage.getItem('@my-list') || '[]')
+  }
+
+  private updateLocalStorage() {
+    return localStorage.setItem('@my-list', 
+      JSON.stringify(this.setListenItens()));
   }
 
   public getInputAddItems(value:IListItens) {
@@ -47,10 +52,16 @@ export class HomeComponent {
       });
       return oldValue;
     });
-    return localStorage.setItem('@my-list', 
-      JSON.stringify(this.setListenItens()))
+    this.updateLocalStorage();
   }
-  
+
+  public deleteItem(id:string) {
+    this.setListenItens.update((oldValue:IListItens[]) => {
+      return oldValue.filter((res) => res.id !== id);
+    });
+    this.updateLocalStorage();
+  }
+
   public deleteAllItems() {
     localStorage.clear();
     return this.setListenItens.set(this.parseItens());
