@@ -26,6 +26,31 @@ export class HomeComponent {
     return this.setListenItens.set(this.parseItens())
   }
 
+  public listItemsStage(value:'pending' | 'completed') {
+    return this.getListItems().filter((res: IListItens) => {
+      if(value === 'pending') return !res.checked;
+      if(value === 'completed') return res.checked;
+
+      return res;
+    })
+  }
+
+  public updateItemCheckbox(newItem: {id:string, checked:boolean}) {
+    this.setListenItens.update((oldValue: IListItens[]) => {
+      oldValue.filter(res => {
+        if(res.id === newItem.id) {
+          res.checked = newItem.checked;
+          console.log('check')
+          return res;
+        }
+        return res;
+      });
+      return oldValue;
+    });
+    return localStorage.setItem('@my-list', 
+      JSON.stringify(this.setListenItens()))
+  }
+  
   public deleteAllItems() {
     localStorage.clear();
     return this.setListenItens.set(this.parseItens());

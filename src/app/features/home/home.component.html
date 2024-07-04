@@ -8,10 +8,20 @@
     }
 
 </div>
+
 <main class="container">
-    <h2>Pendências</h2>
-    <app-input-list-item [inputListItems]="getListItems()"></app-input-list-item>
+    @if (listItemsStage('pending').length) {
+        <h2>Pendências</h2>
+        <app-input-list-item [inputListItems]="listItemsStage('pending')"
+         (outputUpadteCheckbox)="updateItemCheckbox($event)"></app-input-list-item>
+    }
+    @if (listItemsStage('completed').length) {
+        <h2>Concluída</h2>
+        <app-input-list-item [inputListItems]="listItemsStage('completed')"
+         (outputUpadteCheckbox)="updateItemCheckbox($event)">></app-input-list-item>
+    }
 </main>
+
 <footer>
     <button class="btn-danger" (click)="deleteAllItems()">
         Deletar todos os itens
