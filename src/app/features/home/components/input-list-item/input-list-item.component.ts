@@ -10,11 +10,15 @@ import { IListItens } from '../../../../core/interface/IListItens.interface';
 })
 export class InputListItemComponent {
   
-  // @ViewChild('inputText') public inputText!: ElementRef;
   @Input({required: true}) public inputListItems:IListItens[] = [];
+  
   @Output() public outputUpadteCheckbox = new EventEmitter<{ id: string; checked: boolean; }>(); 
-
   public updateItemCheckbox(id:string ,checked:boolean) {
-    return this.outputUpadteCheckbox.emit({id, checked})
+    return this.outputUpadteCheckbox.emit({id, checked});
+  }
+  
+  @Output() public deleteCheckbox = new EventEmitter<string>(); 
+  public deleteItemCheckbox(id:string) {
+    return this.deleteCheckbox.emit(id);
   }
 }
