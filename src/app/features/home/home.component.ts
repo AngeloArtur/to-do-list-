@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { InputAreaComponent } from './components/input-area/input-area.component';
 import { IListItens } from '../../core/interface/IListItens.interface';
 import { InputListItemComponent } from './components/input-list-item/input-list-item.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -56,14 +57,48 @@ export class HomeComponent {
   }
 
   public deleteItem(id:string) {
-    this.setListenItens.update((oldValue:IListItens[]) => {
-      return oldValue.filter((res) => res.id !== id);
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Não é possível reverter essa ação!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#2fbf71",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, delete o item"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deletado!",
+          text: "A task foi deletada",
+          icon: "success"
+        });
+        this.setListenItens.update((oldValue:IListItens[]) => {
+          return oldValue.filter((res) => res.id !== id);
+        });
+      }
     });
     this.updateLocalStorage();
   }
 
   public deleteAllItems() {
-    localStorage.clear();
-    return this.setListenItens.set(this.parseItens());
+    Swal.fire({
+      title: "Você tem certeza?",
+      text: "Não é possível reverter essa ação!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#2fbf71",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim, delete tudo"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deletado!",
+          text: "Todas as tasks foram deletadas.",
+          icon: "success"
+        });
+        localStorage.clear();
+        return this.setListenItens.set(this.parseItens());
+      }
+    });
   }
 }
